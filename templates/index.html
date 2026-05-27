@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoRecon Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Google Fonts for Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="background-animation"></div>
+
+    <div class="container">
+        <header class="glass-header">
+            <h1><i class="fa-solid fa-shield-halved"></i> AutoRecon <span>Pro</span></h1>
+            <p>Advanced Enumeration System for Kali Linux</p>
+        </header>
+
+        <main class="dashboard-grid">
+            <!-- Controls Section -->
+            <section class="glass-panel controls">
+                <h2>Target Configuration</h2>
+                <div class="input-group">
+                    <input type="text" id="target-domain" placeholder="e.g., target.com" autocomplete="off">
+                    <button id="start-btn" class="btn-primary">
+                        <i class="fa-solid fa-rocket"></i> Launch Recon
+                    </button>
+                </div>
+                <div id="status-card" class="status-card hidden">
+                    <div class="loader"></div>
+                    <div class="status-info">
+                        <h3 id="status-phase">Preparing...</h3>
+                        <p id="status-message">Initializing tools...</p>
+                    </div>
+                    <span id="status-time" class="status-time"></span>
+                </div>
+            </section>
+
+            <!-- Results Overview Section -->
+            <section class="glass-panel results hidden" id="results-panel">
+                <h2><i class="fa-solid fa-chart-pie"></i> Recon Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <i class="fa-solid fa-globe"></i>
+                        <h3 id="stat-subdomains">0</h3>
+                        <p>Total Subdomains</p>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        <h3 id="stat-live">0</h3>
+                        <p>Live Targets</p>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fa-solid fa-camera"></i>
+                        <h3 id="stat-eyewitness">Off</h3>
+                        <p>EyeWitness</p>
+                    </div>
+                </div>
+                
+                <div class="actions-grid">
+                    <button class="btn-secondary" id="btn-view-live">
+                        <i class="fa-solid fa-list"></i> View Live Subdomains
+                    </button>
+                    <a href="#" target="_blank" class="btn-secondary disabled" id="btn-view-eyewitness">
+                        <i class="fa-solid fa-image"></i> View Screenshots
+                    </a>
+                </div>
+            </section>
+
+            <!-- Detailed List Section -->
+            <section class="glass-panel list-view hidden" id="list-panel">
+                <h2>Live Subdomains</h2>
+                <ul class="subdomain-list" id="subdomain-list">
+                    <!-- Populated by JS -->
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
